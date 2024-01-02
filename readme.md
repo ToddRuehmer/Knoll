@@ -23,9 +23,9 @@
     "Status": {
         "Done": false,
         "Text": "Not Done"
+    }
 }
 ```
-}
 
 1. Open MongoDB Compass to view collections and items
 
@@ -37,3 +37,9 @@
 - Use Axios
 2. Add copy plugin and move wwwroot items to src.
 - wwwroot should be empty in repo
+3. ~~Set default status on new items to not done.~~
+
+
+
+## Future
+1. Multiple Lists

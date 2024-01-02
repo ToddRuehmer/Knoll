@@ -32,13 +32,15 @@ public class TodoItemsController : Controller
             return BadRequest("Invalid data");
         }
 
+        bool done = item.Status?.Done != null ? item.Status.Done : false;
+
         var newItem = new TodoItem
         {
             Text = item.Text,
             Status = new Status
             {
-                Done = item.Status.Done,
-                Text = item.Status.Text
+                Done = done,
+                Text = item.Status?.Text ?? "Not done"
             }
         };
 
