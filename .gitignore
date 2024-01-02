@@ -134,3 +134,6 @@ obj/
 
 # Bin
 bin/
+
+//VS config Stuff
+.vs/
