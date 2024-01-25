@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTodoItem } from '../actions';
+import { getTodoItems } from '../actions';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import ListItem from './ListItem';
@@ -13,6 +14,12 @@ class List extends React.Component {
     this.state = {
       inputItemValue: ''
     };
+  }
+
+  componentDidMount() {
+    this.props.getTodoItems().then((response) => {
+      this.state.todoList = response.data;
+    });
   }
 
   render() {
@@ -55,11 +62,12 @@ class List extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  todoList: state.todoList
+  todoList: state?.todoList || []
 });
 
 const mapDispatchToProps = {
-  addTodoItem
+  getTodoItems,
+  addTodoItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

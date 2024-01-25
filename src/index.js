@@ -2,16 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import App from './components/App';
 
-const persistedListState = localStorage.getItem('todoList');
-const initialListState = persistedListState ? JSON.parse(persistedListState) : [];
-
-const store = createStore(rootReducer, {todoList:initialListState});
+const store = createStore(rootReducer, applyMiddleware(thunk), {todoList:[]});
 const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()));
 unsubscribe();
-console.log("state",store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
